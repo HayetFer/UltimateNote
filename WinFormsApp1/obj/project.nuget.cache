@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "MjoWdCR3wlEHPySSzE0x+e1OybtLc/WNBKVAGa/ChsUJREvUP4JZEoWEG6XMIYR1jlz0URtoeqkbYvG09ZemXw==",
+  "success": true,
+  "projectFilePath": "D:\\UltimateNote\\UltimateNote\\WinFormsApp1\\WinFormsApp1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Utilisateur 1\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\Utilisateur 1\\.nuget\\packages\\openweatherapi\\1.0.2\\openweatherapi.1.0.2.nupkg.sha512",
+    "C:\\Users\\Utilisateur 1\\.nuget\\packages\\sqlite-net-pcl\\1.8.116\\sqlite-net-pcl.1.8.116.nupkg.sha512",
+    "C:\\Users\\Utilisateur 1\\.nuget\\packages\\sqlitepclraw.bundle_green\\2.0.4\\sqlitepclraw.bundle_green.2.0.4.nupkg.sha512",
+    "C:\\Users\\Utilisateur 1\\.nuget\\packages\\sqlitepclraw.core\\2.0.4\\sqlitepclraw.core.2.0.4.nupkg.sha512",
+    "C:\\Users\\Utilisateur 1\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.4\\sqlitepclraw.lib.e_sqlite3.2.0.4.nupkg.sha512",
+    "C:\\Users\\Utilisateur 1\\.nuget\\packages\\sqlitepclraw.provider.dynamic_cdecl\\2.0.4\\sqlitepclraw.provider.dynamic_cdecl.2.0.4.nupkg.sha512",
+    "C:\\Users\\Utilisateur 1\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512"
+  ],
+  "logs": []
+}
