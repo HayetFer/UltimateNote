@@ -171,10 +171,11 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(913, 562);
+            comboBox1.Location = new Point(913, 563);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(151, 28);
             comboBox1.TabIndex = 14;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // checkedListBox1
             // 
@@ -187,7 +188,7 @@
             // 
             // addTODOLIst
             // 
-            addTODOLIst.Location = new Point(891, 212);
+            addTODOLIst.Location = new Point(884, 179);
             addTODOLIst.Name = "addTODOLIst";
             addTODOLIst.Size = new Size(34, 29);
             addTODOLIst.TabIndex = 16;
@@ -198,10 +199,12 @@
             // todoText
             // 
             todoText.BackColor = Color.LavenderBlush;
-            todoText.Location = new Point(625, 214);
+            todoText.ForeColor = SystemColors.ButtonShadow;
+            todoText.Location = new Point(602, 179);
             todoText.Name = "todoText";
-            todoText.Size = new Size(233, 27);
+            todoText.Size = new Size(267, 27);
             todoText.TabIndex = 17;
+            todoText.Text = "Add a to-do";
             todoText.TextChanged += todoText_TextChanged;
             // 
             // Form1

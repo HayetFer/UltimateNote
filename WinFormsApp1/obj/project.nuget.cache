@@ -1,9 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "XmVk8uBsKooZOxkQvlHhNWFP00lNXAQ/6ntJ85rHbu0kBdDWAl7KZAvfL2kMksdf30iefpwU9uuWnD5cGh92Vw==",
+  "dgSpecHash": "sYHrAeGFet+8XHTI3ufbsEQbW0kvmQoJV4VF2ZNMCQSJ3baCW7S5+k3srFYEnGg+M88H8YfEYi35mjWNBsRquw==",
   "success": true,
   "projectFilePath": "D:\\UltimateNote\\UltimateNote\\WinFormsApp1\\WinFormsApp1.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Utilisateur 1\\.nuget\\packages\\google.apis\\1.60.0\\google.apis.1.60.0.nupkg.sha512",
+    "C:\\Users\\Utilisateur 1\\.nuget\\packages\\google.apis.auth\\1.60.0\\google.apis.auth.1.60.0.nupkg.sha512",
+    "C:\\Users\\Utilisateur 1\\.nuget\\packages\\google.apis.core\\1.60.0\\google.apis.core.1.60.0.nupkg.sha512",
+    "C:\\Users\\Utilisateur 1\\.nuget\\packages\\google.apis.docs.v1\\1.60.0.2979\\google.apis.docs.v1.1.60.0.2979.nupkg.sha512",
     "C:\\Users\\Utilisateur 1\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\Utilisateur 1\\.nuget\\packages\\openweatherapi\\1.0.2\\openweatherapi.1.0.2.nupkg.sha512",
     "C:\\Users\\Utilisateur 1\\.nuget\\packages\\sqlite-net-pcl\\1.8.116\\sqlite-net-pcl.1.8.116.nupkg.sha512",

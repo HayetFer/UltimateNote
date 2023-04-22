@@ -37,3 +37,8 @@ D:\UltimateNote\UltimateNote\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.
 D:\UltimateNote\UltimateNote\WinFormsApp1\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
 D:\UltimateNote\UltimateNote\WinFormsApp1\bin\Debug\net6.0-windows\OpenWeatherAPI.dll
 D:\UltimateNote\UltimateNote\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.Form2.resources
+D:\UltimateNote\UltimateNote\WinFormsApp1\bin\Debug\net6.0-windows\Google.Apis.dll
+D:\UltimateNote\UltimateNote\WinFormsApp1\bin\Debug\net6.0-windows\Google.Apis.Auth.PlatformServices.dll
+D:\UltimateNote\UltimateNote\WinFormsApp1\bin\Debug\net6.0-windows\Google.Apis.Auth.dll
+D:\UltimateNote\UltimateNote\WinFormsApp1\bin\Debug\net6.0-windows\Google.Apis.Core.dll
+D:\UltimateNote\UltimateNote\WinFormsApp1\bin\Debug\net6.0-windows\Google.Apis.Docs.v1.dll

@@ -3,6 +3,12 @@ using System;
 using System.Windows.Forms;
 using OpenWeatherMapDemo;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Drawing;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Docs.v1.Data;
+using Google.Apis.Docs.v1;
+using Google.Apis.Services;
+using Google.Apis.Util.Store;
 
 namespace WinFormsApp1
 {
@@ -52,10 +58,60 @@ namespace WinFormsApp1
         {
 
         }
-
-        private void synch_Click(object sender, EventArgs e)
+        public static async Task<string> CreateGoogleDoc(string textToInsert)
         {
+            UserCredential credential;
+            using (var stream = new FileStream(@"D:\\UltimateNote\\UltimateNote\\.gitignore\\credentials.json", FileMode.Open, FileAccess.Read))
+            {
+                string credPath = "token.json";
+                credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
+                    GoogleClientSecrets.Load(stream).Secrets,
+                    new[] { DocsService.Scope.Documents },
+                    "user",
+                    CancellationToken.None,
+                    new FileDataStore(credPath, true));
+            }
 
+            var service = new DocsService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "UltimateNote",
+            });
+
+            // Create the document.
+            var document = new Document()
+            {
+                Title = "My New Document"
+            };
+            document = await service.Documents.Create(document).ExecuteAsync();
+
+            // Insert the text.
+            var requests = new List<Request>();
+            var insertTextRequest = new InsertTextRequest()
+            {
+                Text = textToInsert,
+                EndOfSegmentLocation = new EndOfSegmentLocation()
+            };
+            requests.Add(new Request()
+            {
+                InsertText = insertTextRequest
+            });
+            var batchUpdateRequest = new BatchUpdateDocumentRequest()
+            {
+                Requests = requests
+            };
+            await service.Documents.BatchUpdate(batchUpdateRequest, document.DocumentId).ExecuteAsync();
+
+            return document.DocumentId;
+        }
+
+        private async void synch_Click(object sender, EventArgs e)
+        {
+            var textToInsert = "Hello, World!"; // Replace this with the text you want to insert.
+
+            var docId = await CreateGoogleDoc(textToInsert);
+
+       
         }
 
         private void save_Click(object sender, EventArgs e)
@@ -145,5 +201,25 @@ namespace WinFormsApp1
         {
 
         }
+
+        private async void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem != null)
+            {
+                string selectedItemText = comboBox1.SelectedItem.ToString();
+                string[] parts = selectedItemText.Split(',');
+                string cityName = parts[0];
+                string countryCode = parts[1];
+                Weather weather = new Weather();
+                string city = "London"; // replace with the desired city
+                string weatherMain = await weather.GetWeatherMainAsync(parts[0], parts[1]);
+
+                if (weatherMain != null)
+                {
+                    label1.Text = weatherMain;
+                }
+            }
+        }
     }
+    
 }
