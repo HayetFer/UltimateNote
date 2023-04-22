@@ -7,7 +7,7 @@ namespace OpenWeatherMapDemo
 {
     public class Weather
     {
-        private const string API_KEY = "bd6f9728cfe7ba2d24531e4e6c684a93";
+        private const string API_KEY = "";
         private const string API_URL = "https://api.openweathermap.org/data/2.5/weather?q={0},{1}&appid={2}";
 
         public async Task<string> GetWeatherMainAsync(string cityName, string countryCode)
