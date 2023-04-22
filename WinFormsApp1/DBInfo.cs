@@ -23,6 +23,7 @@ namespace WinFormsApp1
             dateDB = date;
             moodDB = m;
         }
+       
 
     }
 }

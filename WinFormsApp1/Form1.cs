@@ -15,6 +15,7 @@ namespace WinFormsApp1
     public partial class Form1 : Form
     {
         public string mood;
+        public static string myID;
         public Form1()
         {
             InitializeComponent();
@@ -32,6 +33,16 @@ namespace WinFormsApp1
             {
                 var db = new SQLiteConnection(@"D:\\UltimateNote\\UltimateNote\mydatabase.db3");
                 db.CreateTable<DBInfo>();
+                db.Close();
+            }
+            if (System.IO.File.Exists(@"D:\\UltimateNote\\UltimateNote\IDdatabase.db3"))
+            {
+                //Do Nothing
+            }
+            else
+            {
+                var db = new SQLiteConnection(@"D:\\UltimateNote\\UltimateNote\IDdatabase.db3");
+                db.CreateTable<IDDrive>();
                 db.Close();
             }
 
@@ -58,60 +69,107 @@ namespace WinFormsApp1
         {
 
         }
-        public static async Task<string> CreateGoogleDoc(string textToInsert)
+        public static async Task UpdateGoogleDoc(string docId, string textToInsert)
         {
-            UserCredential credential;
-            using (var stream = new FileStream(@"D:\\UltimateNote\\UltimateNote\\.gitignore\\credentials.json", FileMode.Open, FileAccess.Read))
+            try
             {
-                string credPath = "token.json";
-                credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.Load(stream).Secrets,
-                    new[] { DocsService.Scope.Documents },
-                    "user",
-                    CancellationToken.None,
-                    new FileDataStore(credPath, true));
+                
+                UserCredential credential;
+                using (var stream = new FileStream(@"D:\\UltimateNote\\UltimateNote\\.gitignore\\credentials.json", FileMode.Open, FileAccess.Read))
+                {
+                    string credPath = "token.json";
+                    credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
+                        GoogleClientSecrets.Load(stream).Secrets,
+                        new[] { DocsService.Scope.Documents },
+                        "user",
+                        CancellationToken.None,
+                        new FileDataStore(credPath, true));
+                }
+
+                var service = new DocsService(new BaseClientService.Initializer()
+                {
+                    HttpClientInitializer = credential,
+                    ApplicationName = "UltimateNote",
+                });
+
+                // Retrieve the existing document.
+                var document = await service.Documents.Get(docId).ExecuteAsync();
+                // Insert the text at the end of the existing text.
+                var requests = new List<Request>();
+                var insertTextRequest = new InsertTextRequest()
+                {
+                    Text = textToInsert,
+                    EndOfSegmentLocation = new EndOfSegmentLocation()
+                };
+                requests.Add(new Request()
+                {
+                    InsertText = insertTextRequest
+                });
+                var batchUpdateRequest = new BatchUpdateDocumentRequest()
+                {
+                    Requests = requests
+                };
+                await service.Documents.BatchUpdate(batchUpdateRequest, docId).ExecuteAsync();
             }
+            catch (Google.GoogleApiException e)
+            {
+                UserCredential credential;
+                using (var stream = new FileStream(@"D:\\UltimateNote\\UltimateNote\\.gitignore\\credentials.json", FileMode.Open, FileAccess.Read))
+                {
+                    string credPath = "token.json";
+                    credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
+                        GoogleClientSecrets.Load(stream).Secrets,
+                        new[] { DocsService.Scope.Documents },
+                        "user",
+                        CancellationToken.None,
+                        new FileDataStore(credPath, true));
+                }
 
-            var service = new DocsService(new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = "UltimateNote",
-            });
+                var service = new DocsService(new BaseClientService.Initializer()
+                {
+                    HttpClientInitializer = credential,
+                    ApplicationName = "UltimateNote",
+                });
 
-            // Create the document.
-            var document = new Document()
-            {
-                Title = "My New Document"
-            };
-            document = await service.Documents.Create(document).ExecuteAsync();
+                // Create the document.
+                var document = new Document()
+                {
+                    Title = "MyUltimateNote"
+                };
+                document = await service.Documents.Create(document).ExecuteAsync();
 
-            // Insert the text.
-            var requests = new List<Request>();
-            var insertTextRequest = new InsertTextRequest()
-            {
-                Text = textToInsert,
-                EndOfSegmentLocation = new EndOfSegmentLocation()
-            };
-            requests.Add(new Request()
-            {
-                InsertText = insertTextRequest
-            });
-            var batchUpdateRequest = new BatchUpdateDocumentRequest()
-            {
-                Requests = requests
-            };
-            await service.Documents.BatchUpdate(batchUpdateRequest, document.DocumentId).ExecuteAsync();
-
-            return document.DocumentId;
+                // Insert the text.
+                var requests = new List<Request>();
+                var insertTextRequest = new InsertTextRequest()
+                {
+                    Text = textToInsert,
+                    EndOfSegmentLocation = new EndOfSegmentLocation()
+                };
+                requests.Add(new Request()
+                {
+                    InsertText = insertTextRequest
+                });
+                var batchUpdateRequest = new BatchUpdateDocumentRequest()
+                {
+                    Requests = requests
+                };
+                IDDrive temp = new IDDrive(document.DocumentId);
+                await service.Documents.BatchUpdate(batchUpdateRequest, document.DocumentId).ExecuteAsync();
+                var db = new IDDrive();
+                db.UpdateById(1, document.DocumentId);
+            }
         }
 
         private async void synch_Click(object sender, EventArgs e)
         {
-            var textToInsert = "Hello, World!"; // Replace this with the text you want to insert.
+            var idDrive = new IDDrive();
+            if (idDrive.GetFirstElement().ToString() != null)
+            {
+                myID = idDrive.GetFirstElement().ToString();
+            }
+            var textToInsert = title.Text + "\n";
 
-            var docId = await CreateGoogleDoc(textToInsert);
-
-       
+            await UpdateGoogleDoc(myID, textToInsert);
         }
 
         private void save_Click(object sender, EventArgs e)
