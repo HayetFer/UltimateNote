@@ -1,7 +1,8 @@
 using SQLite;
 using System;
 using System.Windows.Forms;
-using OpenWeatherAPI;
+using OpenWeatherMapDemo;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WinFormsApp1
 {
@@ -27,6 +28,19 @@ namespace WinFormsApp1
                 db.CreateTable<DBInfo>();
                 db.Close();
             }
+
+            string filePath = "D:\\UltimateNote\\UltimateNote\\WinFormsApp1\\cities.csv";
+            string[] lines = File.ReadAllLines(filePath);
+            foreach (string line in lines)
+            {
+                string[] parts = line.Split(',');
+                string city = parts[0];
+                string countryCode = parts[1];
+
+                string itemText = $"{city},{countryCode}";
+                comboBox1.Items.Add(itemText);
+            }
+
         }
 
         private void title_TextChanged(object sender, EventArgs e)
@@ -51,7 +65,6 @@ namespace WinFormsApp1
             db.Insert(temp);
             db.Close();
             mood = "";
-
         }
 
         private void weather_TextChanged(object sender, EventArgs e)
@@ -61,13 +74,21 @@ namespace WinFormsApp1
 
         private async void test_ClickAsync(object sender, EventArgs e)
         {
+            if (comboBox1.SelectedItem != null)
+            {
+                string selectedItemText = comboBox1.SelectedItem.ToString();
+                string[] parts = selectedItemText.Split(',');
+                string cityName = parts[0];
+                string countryCode = parts[1];
+                Weather weather = new Weather();
+                string city = "London"; // replace with the desired city
+                string weatherMain = await weather.GetWeatherMainAsync(parts[0], parts[1]);
 
-            var openWeatherAPI = new OpenWeatherAPI.OpenWeatherApiClient("bd6f9728cfe7ba2d24531e4e6c684a93");
-            // Use async version wherever possible
-            var query = await openWeatherAPI.QueryAsync("Washington, USA");
-
-            Console.Write(string.Format("The temperature in {0}, {1} is currently {2} °F", query.Name, query.Sys.Country, query.Main.Temperature.CelsiusCurrent));
-            label1.Text = (string.Format("The temperature in {0}, {1} is currently {2} °F", query.Name, query.Sys.Country, query.Main.Temperature.CelsiusCurrent)); ;
+                if (weatherMain != null)
+                {
+                    label1.Text = weatherMain;
+                }
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -106,6 +127,23 @@ namespace WinFormsApp1
 
             // Show the new form
             newForm.Show();
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addTODOLIst_Click(object sender, EventArgs e)
+        {
+            string item = todoText.Text;
+            checkedListBox1.Items.Add(item);
+            todoText.Clear();
+        }
+
+        private void todoText_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

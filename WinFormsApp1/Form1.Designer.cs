@@ -40,6 +40,10 @@
             four = new Button();
             five = new Button();
             load = new Button();
+            comboBox1 = new ComboBox();
+            checkedListBox1 = new CheckedListBox();
+            addTODOLIst = new Button();
+            todoText = new TextBox();
             SuspendLayout();
             // 
             // entry
@@ -86,7 +90,7 @@
             // 
             // test
             // 
-            test.Location = new Point(1049, 189);
+            test.Location = new Point(1070, 562);
             test.Name = "test";
             test.Size = new Size(94, 29);
             test.TabIndex = 6;
@@ -97,7 +101,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(956, 189);
+            label1.Location = new Point(960, 529);
             label1.Name = "label1";
             label1.Size = new Size(50, 20);
             label1.TabIndex = 7;
@@ -164,12 +168,52 @@
             load.UseVisualStyleBackColor = true;
             load.Click += load_Click;
             // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(913, 562);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(151, 28);
+            comboBox1.TabIndex = 14;
+            // 
+            // checkedListBox1
+            // 
+            checkedListBox1.BackColor = Color.FromArgb(251, 244, 215);
+            checkedListBox1.FormattingEnabled = true;
+            checkedListBox1.Location = new Point(602, 212);
+            checkedListBox1.Name = "checkedListBox1";
+            checkedListBox1.Size = new Size(267, 378);
+            checkedListBox1.TabIndex = 15;
+            // 
+            // addTODOLIst
+            // 
+            addTODOLIst.Location = new Point(891, 212);
+            addTODOLIst.Name = "addTODOLIst";
+            addTODOLIst.Size = new Size(34, 29);
+            addTODOLIst.TabIndex = 16;
+            addTODOLIst.Text = "+";
+            addTODOLIst.UseVisualStyleBackColor = true;
+            addTODOLIst.Click += addTODOLIst_Click;
+            // 
+            // todoText
+            // 
+            todoText.BackColor = Color.LavenderBlush;
+            todoText.Location = new Point(625, 214);
+            todoText.Name = "todoText";
+            todoText.Size = new Size(233, 27);
+            todoText.TabIndex = 17;
+            todoText.TextChanged += todoText_TextChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(206, 214, 177);
             ClientSize = new Size(1200, 698);
+            Controls.Add(todoText);
+            Controls.Add(addTODOLIst);
+            Controls.Add(checkedListBox1);
+            Controls.Add(comboBox1);
             Controls.Add(load);
             Controls.Add(five);
             Controls.Add(four);
@@ -203,5 +247,9 @@
         private Button four;
         private Button five;
         private Button load;
+        private ComboBox comboBox1;
+        private CheckedListBox checkedListBox1;
+        private Button addTODOLIst;
+        private TextBox todoText;
     }
 }
