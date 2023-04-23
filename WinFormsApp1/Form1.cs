@@ -16,6 +16,7 @@ namespace WinFormsApp1
     {
         public string mood;
         public static string myID;
+        public static string weatherDescription;
         public Form1()
         {
             InitializeComponent();
@@ -73,9 +74,9 @@ namespace WinFormsApp1
         {
             try
             {
-                
+
                 UserCredential credential;
-                using (var stream = new FileStream(@"D:\\UltimateNote\\UltimateNote\\.gitignore\\credentials.json", FileMode.Open, FileAccess.Read))
+                using (var stream = new FileStream(@"D:\\UltimateNote\\UltimateNote\\credentials.json", FileMode.Open, FileAccess.Read))
                 {
                     string credPath = "token.json";
                     credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
@@ -114,7 +115,7 @@ namespace WinFormsApp1
             catch (Google.GoogleApiException e)
             {
                 UserCredential credential;
-                using (var stream = new FileStream(@"D:\\UltimateNote\\UltimateNote\\.gitignore\\credentials.json", FileMode.Open, FileAccess.Read))
+                using (var stream = new FileStream(@"D:\\UltimateNote\\UltimateNote\\credentials.json", FileMode.Open, FileAccess.Read))
                 {
                     string credPath = "token.json";
                     credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
@@ -153,31 +154,44 @@ namespace WinFormsApp1
                 {
                     Requests = requests
                 };
-                IDDrive temp = new IDDrive(document.DocumentId);
+                var dbHandler = new DatabaseHandler();
+                dbHandler.AddId(document.DocumentId);
                 await service.Documents.BatchUpdate(batchUpdateRequest, document.DocumentId).ExecuteAsync();
-                var db = new IDDrive();
-                db.UpdateById(1, document.DocumentId);
+
             }
         }
 
         private async void synch_Click(object sender, EventArgs e)
         {
             var idDrive = new IDDrive();
-            if (idDrive.GetFirstElement().ToString() != null)
-            {
-                myID = idDrive.GetFirstElement().ToString();
-            }
-            var textToInsert = title.Text + "\n";
+            var dbHandler = new DatabaseHandler();
+            myID = dbHandler.selectID();
+            var dbHandler2 = new DatabaseHandler2();
+            // Retrieve all unsynced entries from the database
+            var unsyncedEntries = dbHandler2.GetUnsyncedEntries();
 
-            await UpdateGoogleDoc(myID, textToInsert);
+            // Loop through each unsynced entry and process it
+            foreach (var entry in unsyncedEntries)
+            {
+                // Append the entry's title and content to the text variable
+                var textToInsert = entry.titleDB + " | " + entry.entryDB + " | " + entry.moodDB + " | " + entry.weatherDB + "|" + entry.dateDB + "\n";
+
+                // Update the entry's synced status to "true"
+                entry.synced = "true";
+                dbHandler2.UpdateEntry(entry);
+
+                // Call the function to update the Google Doc
+                await UpdateGoogleDoc(myID, textToInsert);
+            }
         }
 
         private void save_Click(object sender, EventArgs e)
         {
-            DBInfo temp = new DBInfo(title.Text, entry.Text, DateTime.Now.ToString("dd-MM-yyyyy"), mood);
-            var db = new SQLiteConnection(@"D:\\UltimateNote\\UltimateNote\mydatabase.db3");
-            db.Insert(temp);
-            db.Close();
+            var dbHandler = new DatabaseHandler2();
+            if (title.Text != null && entry.Text != null && weatherDescription != null && mood != "")
+            {
+                dbHandler.Add(title.Text, entry.Text, DateTime.Now.ToString(), mood, weatherDescription, "false");
+            }
             mood = "";
         }
 
@@ -274,10 +288,12 @@ namespace WinFormsApp1
 
                 if (weatherMain != null)
                 {
+                    weatherDescription = weatherMain;
                     label1.Text = weatherMain;
+
                 }
             }
         }
     }
-    
+
 }

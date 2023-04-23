@@ -32,7 +32,6 @@
             title = new TextBox();
             synch = new Button();
             save = new Button();
-            test = new Button();
             label1 = new Label();
             one = new Button();
             two = new Button();
@@ -41,9 +40,6 @@
             five = new Button();
             load = new Button();
             comboBox1 = new ComboBox();
-            checkedListBox1 = new CheckedListBox();
-            addTODOLIst = new Button();
-            todoText = new TextBox();
             SuspendLayout();
             // 
             // entry
@@ -53,7 +49,7 @@
             entry.Location = new Point(24, 91);
             entry.Multiline = true;
             entry.Name = "entry";
-            entry.Size = new Size(547, 595);
+            entry.Size = new Size(865, 545);
             entry.TabIndex = 0;
             entry.TextChanged += entry_TextChanged;
             // 
@@ -64,13 +60,13 @@
             title.Location = new Point(24, 23);
             title.Multiline = true;
             title.Name = "title";
-            title.Size = new Size(547, 48);
+            title.Size = new Size(865, 48);
             title.TabIndex = 1;
             title.TextChanged += title_TextChanged;
             // 
             // synch
             // 
-            synch.Location = new Point(1094, 12);
+            synch.Location = new Point(1069, 12);
             synch.Name = "synch";
             synch.Size = new Size(94, 29);
             synch.TabIndex = 3;
@@ -80,7 +76,7 @@
             // 
             // save
             // 
-            save.Location = new Point(1094, 47);
+            save.Location = new Point(1069, 47);
             save.Name = "save";
             save.Size = new Size(94, 29);
             save.TabIndex = 4;
@@ -88,29 +84,19 @@
             save.UseVisualStyleBackColor = true;
             save.Click += save_Click;
             // 
-            // test
-            // 
-            test.Location = new Point(1070, 562);
-            test.Name = "test";
-            test.Size = new Size(94, 29);
-            test.TabIndex = 6;
-            test.Text = "button1";
-            test.UseVisualStyleBackColor = true;
-            test.Click += test_ClickAsync;
-            // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(960, 529);
+            label1.Location = new Point(988, 364);
             label1.Name = "label1";
-            label1.Size = new Size(50, 20);
+            label1.Size = new Size(114, 20);
             label1.TabIndex = 7;
-            label1.Text = "label1";
+            label1.Text = "Get the weather";
             label1.Click += label1_Click;
             // 
             // one
             // 
-            one.Location = new Point(602, 657);
+            one.Location = new Point(24, 657);
             one.Name = "one";
             one.Size = new Size(94, 29);
             one.TabIndex = 8;
@@ -120,7 +106,7 @@
             // 
             // two
             // 
-            two.Location = new Point(719, 657);
+            two.Location = new Point(148, 657);
             two.Name = "two";
             two.Size = new Size(94, 29);
             two.TabIndex = 9;
@@ -130,7 +116,7 @@
             // 
             // three
             // 
-            three.Location = new Point(847, 657);
+            three.Location = new Point(269, 657);
             three.Name = "three";
             three.Size = new Size(94, 29);
             three.TabIndex = 10;
@@ -140,7 +126,7 @@
             // 
             // four
             // 
-            four.Location = new Point(970, 657);
+            four.Location = new Point(403, 657);
             four.Name = "four";
             four.Size = new Size(94, 29);
             four.TabIndex = 11;
@@ -150,7 +136,7 @@
             // 
             // five
             // 
-            five.Location = new Point(1084, 657);
+            five.Location = new Point(541, 657);
             five.Name = "five";
             five.Size = new Size(94, 29);
             five.TabIndex = 12;
@@ -160,7 +146,7 @@
             // 
             // load
             // 
-            load.Location = new Point(1094, 82);
+            load.Location = new Point(1069, 82);
             load.Name = "load";
             load.Size = new Size(94, 29);
             load.TabIndex = 13;
@@ -171,41 +157,11 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(913, 563);
+            comboBox1.Location = new Point(970, 387);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(151, 28);
             comboBox1.TabIndex = 14;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-            // 
-            // checkedListBox1
-            // 
-            checkedListBox1.BackColor = Color.FromArgb(251, 244, 215);
-            checkedListBox1.FormattingEnabled = true;
-            checkedListBox1.Location = new Point(602, 212);
-            checkedListBox1.Name = "checkedListBox1";
-            checkedListBox1.Size = new Size(267, 378);
-            checkedListBox1.TabIndex = 15;
-            // 
-            // addTODOLIst
-            // 
-            addTODOLIst.Location = new Point(884, 179);
-            addTODOLIst.Name = "addTODOLIst";
-            addTODOLIst.Size = new Size(34, 29);
-            addTODOLIst.TabIndex = 16;
-            addTODOLIst.Text = "+";
-            addTODOLIst.UseVisualStyleBackColor = true;
-            addTODOLIst.Click += addTODOLIst_Click;
-            // 
-            // todoText
-            // 
-            todoText.BackColor = Color.LavenderBlush;
-            todoText.ForeColor = SystemColors.ButtonShadow;
-            todoText.Location = new Point(602, 179);
-            todoText.Name = "todoText";
-            todoText.Size = new Size(267, 27);
-            todoText.TabIndex = 17;
-            todoText.Text = "Add a to-do";
-            todoText.TextChanged += todoText_TextChanged;
             // 
             // Form1
             // 
@@ -213,9 +169,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(206, 214, 177);
             ClientSize = new Size(1200, 698);
-            Controls.Add(todoText);
-            Controls.Add(addTODOLIst);
-            Controls.Add(checkedListBox1);
             Controls.Add(comboBox1);
             Controls.Add(load);
             Controls.Add(five);
@@ -224,7 +177,6 @@
             Controls.Add(two);
             Controls.Add(one);
             Controls.Add(label1);
-            Controls.Add(test);
             Controls.Add(save);
             Controls.Add(synch);
             Controls.Add(title);
@@ -242,7 +194,6 @@
         private TextBox title;
         private Button synch;
         private Button save;
-        private Button test;
         private Label label1;
         private Button one;
         private Button two;
@@ -251,8 +202,5 @@
         private Button five;
         private Button load;
         private ComboBox comboBox1;
-        private CheckedListBox checkedListBox1;
-        private Button addTODOLIst;
-        private TextBox todoText;
     }
 }
