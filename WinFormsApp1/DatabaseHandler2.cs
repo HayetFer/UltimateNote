@@ -10,7 +10,7 @@ namespace WinFormsApp1
 {
     internal class DatabaseHandler2
     {
-        private SQLiteConnection _db;
+        public SQLiteConnection _db;
         public DatabaseHandler2()
         {
             _db = new SQLiteConnection(@"D:\\UltimateNote\\UltimateNote\mydatabase.db3");

@@ -42,3 +42,4 @@ D:\UltimateNote\UltimateNote\WinFormsApp1\bin\Debug\net6.0-windows\Google.Apis.A
 D:\UltimateNote\UltimateNote\WinFormsApp1\bin\Debug\net6.0-windows\Google.Apis.Auth.dll
 D:\UltimateNote\UltimateNote\WinFormsApp1\bin\Debug\net6.0-windows\Google.Apis.Core.dll
 D:\UltimateNote\UltimateNote\WinFormsApp1\bin\Debug\net6.0-windows\Google.Apis.Docs.v1.dll
+D:\UltimateNote\UltimateNote\WinFormsApp1\obj\Debug\net6.0-windows\WinFormsApp1.Properties.Resources.resources

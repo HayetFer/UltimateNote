@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             entry = new TextBox();
             title = new TextBox();
             synch = new Button();
@@ -40,6 +41,8 @@
             five = new Button();
             load = new Button();
             comboBox1 = new ComboBox();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // entry
@@ -96,52 +99,61 @@
             // 
             // one
             // 
-            one.Location = new Point(24, 657);
+            one.BackColor = Color.Brown;
+            one.Image = (Image)resources.GetObject("one.Image");
+            one.Location = new Point(136, 647);
             one.Name = "one";
-            one.Size = new Size(94, 29);
+            one.Size = new Size(56, 49);
             one.TabIndex = 8;
-            one.Text = "button1";
-            one.UseVisualStyleBackColor = true;
+            one.UseVisualStyleBackColor = false;
             one.Click += one_Click;
             // 
             // two
             // 
-            two.Location = new Point(148, 657);
+            two.BackColor = Color.FromArgb(192, 64, 0);
+            two.BackgroundImage = (Image)resources.GetObject("two.BackgroundImage");
+            two.BackgroundImageLayout = ImageLayout.Center;
+            two.Location = new Point(293, 647);
             two.Name = "two";
-            two.Size = new Size(94, 29);
+            two.Size = new Size(55, 49);
             two.TabIndex = 9;
-            two.Text = "button2";
-            two.UseVisualStyleBackColor = true;
+            two.UseVisualStyleBackColor = false;
             two.Click += two_Click;
             // 
             // three
             // 
-            three.Location = new Point(269, 657);
+            three.BackColor = Color.FromArgb(255, 128, 0);
+            three.BackgroundImage = (Image)resources.GetObject("three.BackgroundImage");
+            three.BackgroundImageLayout = ImageLayout.Center;
+            three.Location = new Point(449, 647);
             three.Name = "three";
-            three.Size = new Size(94, 29);
+            three.Size = new Size(52, 49);
             three.TabIndex = 10;
-            three.Text = "button3";
-            three.UseVisualStyleBackColor = true;
+            three.UseVisualStyleBackColor = false;
             three.Click += button3_Click;
             // 
             // four
             // 
-            four.Location = new Point(403, 657);
+            four.BackColor = Color.LawnGreen;
+            four.BackgroundImage = (Image)resources.GetObject("four.BackgroundImage");
+            four.BackgroundImageLayout = ImageLayout.Center;
+            four.Location = new Point(585, 647);
             four.Name = "four";
-            four.Size = new Size(94, 29);
+            four.Size = new Size(51, 49);
             four.TabIndex = 11;
-            four.Text = "button4";
-            four.UseVisualStyleBackColor = true;
+            four.UseVisualStyleBackColor = false;
             four.Click += four_Click;
             // 
             // five
             // 
-            five.Location = new Point(541, 657);
+            five.BackColor = Color.FromArgb(0, 192, 0);
+            five.BackgroundImage = (Image)resources.GetObject("five.BackgroundImage");
+            five.BackgroundImageLayout = ImageLayout.Center;
+            five.Location = new Point(744, 647);
             five.Name = "five";
-            five.Size = new Size(94, 29);
+            five.Size = new Size(54, 49);
             five.TabIndex = 12;
-            five.Text = "button5";
-            five.UseVisualStyleBackColor = true;
+            five.UseVisualStyleBackColor = false;
             five.Click += five_Click;
             // 
             // load
@@ -163,12 +175,24 @@
             comboBox1.TabIndex = 14;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImageLayout = ImageLayout.Center;
+            pictureBox1.Location = new Point(950, 186);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(183, 175);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 15;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(206, 214, 177);
-            ClientSize = new Size(1200, 698);
+            ClientSize = new Size(1180, 703);
+            Controls.Add(pictureBox1);
             Controls.Add(comboBox1);
             Controls.Add(load);
             Controls.Add(five);
@@ -184,6 +208,7 @@
             Name = "Form1";
             Text = "UltimateNote";
             Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -202,5 +227,6 @@
         private Button five;
         private Button load;
         private ComboBox comboBox1;
+        private PictureBox pictureBox1;
     }
 }

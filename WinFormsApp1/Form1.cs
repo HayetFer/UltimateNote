@@ -174,7 +174,7 @@ namespace WinFormsApp1
             foreach (var entry in unsyncedEntries)
             {
                 // Append the entry's title and content to the text variable
-                var textToInsert = entry.titleDB + " | " + entry.entryDB + " | " + entry.moodDB + " | " + entry.weatherDB + "|" + entry.dateDB + "\n";
+                var textToInsert = entry.titleDB + " | " + entry.entryDB + " | " + entry.moodDB + " | " + entry.weatherDB + " | " + entry.dateDB + "\n";
 
                 // Update the entry's synced status to "true"
                 entry.synced = "true";
@@ -262,13 +262,6 @@ namespace WinFormsApp1
 
         }
 
-        private void addTODOLIst_Click(object sender, EventArgs e)
-        {
-            string item = todoText.Text;
-            checkedListBox1.Items.Add(item);
-            todoText.Clear();
-        }
-
         private void todoText_TextChanged(object sender, EventArgs e)
         {
 
@@ -292,6 +285,22 @@ namespace WinFormsApp1
                     label1.Text = weatherMain;
 
                 }
+            }
+        }
+
+        private async void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (label1.Text == "Clouds")
+            {
+                pictureBox1.Image = Image.FromFile(@"D:\UltimateNote\UltimateNote\WinFormsApp1\clouds.png");
+            }
+            else if (label1.Text == "Clear")
+            {
+                pictureBox1.Image = Image.FromFile(@"D:\UltimateNote\UltimateNote\WinFormsApp1\sun.png");
+            }
+            else if (label1.Text == "Rain")
+            {
+                pictureBox1.Image = Image.FromFile(@"D:\UltimateNote\UltimateNote\WinFormsApp1\rain.png");
             }
         }
     }
